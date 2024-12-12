@@ -1,0 +1,6 @@
+@ManifestationApi_HostAddress = http://localhost:5083
+
+GET {{ManifestationApi_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

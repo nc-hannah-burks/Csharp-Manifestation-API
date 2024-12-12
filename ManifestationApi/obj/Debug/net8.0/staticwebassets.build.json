@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "qVpu4Xkfe/oSpDcqRjuGhumBY+aO6hyVb5HKMz0l0qA=",
+  "Source": "ManifestationApi",
+  "BasePath": "_content/ManifestationApi",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}
