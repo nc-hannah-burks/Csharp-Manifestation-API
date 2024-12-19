@@ -32,35 +32,29 @@ namespace ManifestationApi.Controllers
             return manifestationUser;
         }
 
-        // // PUT: api/ManifestationUser/{id}
-        // [HttpPut("{id}")]
-        // public async Task<IActionResult> PutManifestationUser(Guid id, ManifestationUser updatedManifestationUser)
-        // {
-        //     if (id != updatedManifestationUser.id)
-        //     {
-        //         return BadRequest("User ID in URL does not match User ID in the payload.");
-        //     }
+        // PUT: api/ManifestationUser/{id}
+        [HttpPut("{id}/email")]
+        public async Task<IActionResult> PutManifestationUserEmail(Guid id, ManifestationUserEmailUpdate updatedEmail)
+        {
 
-        //     _context.Entry(updatedManifestationUser).State = EntityState.Modified;
+            var manifestationUser = await _context.ManifestationUsers.FindAsync(id);
+            if (manifestationUser == null)
+            {
+                return NotFound();
+            }
 
-        //     try
-        //     {
-        //         await _context.SaveChangesAsync();
-        //     }
-        //     catch (DbUpdateConcurrencyException)
-        //     {
-        //         if (!ManifestationUserExists(id))
-        //         {
-        //             return NotFound();
-        //         }
-        //         else
-        //         {
-        //             throw;
-        //         }
-        //     }
+            manifestationUser.Email = updatedEmail.Email;
 
-        //     return NoContent();
-        // }
+            try
+            {
+                await _context.SaveChangesAsync();
+            }
+            catch (DbUpdateConcurrencyException) when (!ManifestationUserExists(id))
+            {
+                return NotFound();
+            }
+            return NoContent();
+        }
 
         // POST: api/ManifestationUser
         [HttpPost]
@@ -98,10 +92,10 @@ namespace ManifestationApi.Controllers
         //     return NoContent();
         // }
 
-        //     private bool ManifestationUserExists(Guid id)
-        //     {
-        //         return _context.ManifestationUser.Any(e => e.Id == id);
-        //     }
+        private bool ManifestationUserExists(Guid id)
+        {
+            return _context.ManifestationUsers.Any(e => e.Id == id);
+        }
         // }
     }
 };
