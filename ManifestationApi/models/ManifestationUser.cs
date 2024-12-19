@@ -14,6 +14,12 @@ public class ManifestationUser
     public string? Surname { get; set; }
 
     [Required]
+    public string? MemorableQuestion { get; set; }
+
+    [Required]
+    public string? MemorableAnswer { get; set; }
+
+    [Required]
     [EmailAddress(ErrorMessage = "E-mail is not valid")] //validates email is in valid email format
     public string? Email { get; set; }
 
@@ -31,6 +37,11 @@ public class CreateManifestationUser
 
     [Required]
     public string? Surname { get; set; }
+    [Required]
+    public string? MemorableQuestion { get; set; }
+
+    [Required]
+    public string? MemorableAnswer { get; set; }
 
     [Required]
     [EmailAddress(ErrorMessage = "E-mail is not valid")] //validates email is in valid email format
@@ -58,6 +69,7 @@ public class ManifestationUserPasswordUpdate
     [RegularExpression(@"^(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,20}$",
         ErrorMessage = "Password must be 8-20 characters long, include at least one number, and one special character.")]
     public string? Password { get; set; }
+    public string? MemorableAnswer { get; set; }
 }
 
 

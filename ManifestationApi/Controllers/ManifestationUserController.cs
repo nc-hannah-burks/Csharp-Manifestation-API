@@ -32,7 +32,7 @@ namespace ManifestationApi.Controllers
             return manifestationUser;
         }
 
-        // PUT: api/ManifestationUser/{id}
+        // PUT: api/ManifestationUser/{id}/email
         [HttpPut("{id}/email")]
         public async Task<IActionResult> PutManifestationUserEmail(Guid id, ManifestationUserEmailUpdate updatedEmail)
         {
@@ -56,6 +56,59 @@ namespace ManifestationApi.Controllers
             return NoContent();
         }
 
+        // PUT: api/ManifestationUser/{id}/name
+        [HttpPut("{id}/name")]
+        public async Task<IActionResult> PutManifestationUserName(Guid id, ManifestationUserNameUpdate usernameUpdate)
+        {
+
+            var manifestationUser = await _context.ManifestationUsers.FindAsync(id);
+            if (manifestationUser == null)
+            {
+                return NotFound();
+            }
+
+            manifestationUser.Forename = usernameUpdate.Forename;
+            manifestationUser.Forename = usernameUpdate.Surname;
+            try
+            {
+                await _context.SaveChangesAsync();
+            }
+            catch (DbUpdateConcurrencyException) when (!ManifestationUserExists(id))
+            {
+                return NotFound();
+            }
+            return NoContent();
+        }
+
+        // PUT: api/ManifestationUser/{id}/password
+        [HttpPut("{id}/password")]
+        public async Task<IActionResult> PutManifestationPassword(Guid id, ManifestationUserPasswordUpdate passwordUpdate)
+        {
+
+            var manifestationUser = await _context.ManifestationUsers.FindAsync(id);
+            if (manifestationUser == null)
+            {
+                return NotFound();
+            }
+
+            if (passwordUpdate.MemorableAnswer != manifestationUser.MemorableAnswer)
+            {
+                return Unauthorized("Your Answer is incorrect - It is not possible to update your password at this time");
+            }
+
+
+            manifestationUser.Password = passwordUpdate.Password;
+            try
+            {
+                await _context.SaveChangesAsync();
+            }
+            catch (DbUpdateConcurrencyException) when (!ManifestationUserExists(id))
+            {
+                return NotFound();
+            }
+            return NoContent();
+        }
+
         // POST: api/ManifestationUser
         [HttpPost]
         public async Task<ActionResult<ManifestationUser>> PostManifestationUser(CreateManifestationUser newManifestationUser)
@@ -66,7 +119,9 @@ namespace ManifestationApi.Controllers
                 Forename = newManifestationUser.Forename,
                 Surname = newManifestationUser.Surname,
                 Password = newManifestationUser.Password,
-                Email = newManifestationUser.Email
+                Email = newManifestationUser.Email,
+                MemorableQuestion = newManifestationUser.MemorableQuestion,
+                MemorableAnswer = newManifestationUser.MemorableAnswer
             };
 
             _context.ManifestationUsers.Add(newUser);
