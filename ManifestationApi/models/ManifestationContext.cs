@@ -1,13 +1,18 @@
 using Microsoft.EntityFrameworkCore;
 
-namespace ManifestationApi.Models;
-
-public class ManifestationContext : DbContext
+namespace ManifestationApi.Models
 {
-    public ManifestationContext(DbContextOptions<ManifestationContext> options)
-        : base(options)
+    public class ManifestationContext : DbContext
     {
-    }
+        public ManifestationContext(DbContextOptions<ManifestationContext> options)
+            : base(options)
+        {
+        }
 
-    public DbSet<ManifestationUser> ManifestationUsers { get; set; } = null!;
+
+        public DbSet<ManifestationUser> ManifestationUsers { get; set; }
+
+
+    }
 }
+

@@ -1,11 +1,12 @@
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ManifestationApi.Models;
 
 public class ManifestationUser
 {
-    [Key] //make UserId the key 
-    public int UserId { get; set; }
+
+    public Guid Id { get; set; }
     [Required]
     public string? Forename { get; set; }
 
@@ -23,7 +24,24 @@ public class ManifestationUser
     public string? Password { get; set; }
 }
 
+public class CreateManifestationUser
+{
+    [Required]
+    public string? Forename { get; set; }
 
+    [Required]
+    public string? Surname { get; set; }
+
+    [Required]
+    [EmailAddress(ErrorMessage = "E-mail is not valid")] //validates email is in valid email format
+    public string? Email { get; set; }
+
+    [Required]
+    [DataType(DataType.Password)]
+    [RegularExpression(@"^(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,20}$",
+        ErrorMessage = "Password must be 8-20 characters long, include at least one number, and one special character.")]
+    public string? Password { get; set; }
+}
 public class ManifestationUserEmailUpdate
 {
 
