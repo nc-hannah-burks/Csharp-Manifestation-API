@@ -130,22 +130,22 @@ namespace ManifestationApi.Controllers
             return CreatedAtAction(nameof(GetManifestationUser), new { id = newUser.Id }, newUser);
         }
 
-        // // DELETE: api/ManifestationUser/{id}
-        // [HttpDelete("{id}")]
-        // public async Task<IActionResult> DeleteManifestationUser(Guid id)
-        // {
-        //     var manifestationUser = await _context.ManifestationUser.FindAsync(id);
+        // DELETE: api/ManifestationUser/{id}
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteManifestationUser(Guid id)
+        {
+            var manifestationUser = await _context.ManifestationUsers.FindAsync(id);
 
-        //     if (manifestationUser == null)
-        //     {
-        //         return NotFound();
-        //     }
+            if (manifestationUser == null)
+            {
+                return NotFound();
+            }
 
-        //     _context.ManifestationUser.Remove(manifestationUser);
-        //     await _context.SaveChangesAsync();
+            _context.ManifestationUsers.Remove(manifestationUser);
+            await _context.SaveChangesAsync();
 
-        //     return NoContent();
-        // }
+            return NoContent();
+        }
 
         private bool ManifestationUserExists(Guid id)
         {
