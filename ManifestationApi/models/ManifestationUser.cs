@@ -1,5 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
 
 namespace ManifestationApi.Models;
 
@@ -28,6 +29,9 @@ public class ManifestationUser
     [RegularExpression(@"^(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,20}$",
         ErrorMessage = "Password must be 8-20 characters long, include at least one number, and one special character.")]
     public string? Password { get; set; }
+
+    [JsonIgnore]
+    public ICollection<ManifestationReminder> ManifestationReminders { get; } = new List<ManifestationReminder>();
 }
 
 public class CreateManifestationUser
@@ -52,6 +56,9 @@ public class CreateManifestationUser
     [RegularExpression(@"^(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,20}$",
         ErrorMessage = "Password must be 8-20 characters long, include at least one number, and one special character.")]
     public string? Password { get; set; }
+
+    [JsonIgnore]
+    public ICollection<ManifestationReminder> ManifestationReminders { get; } = new List<ManifestationReminder>();
 }
 public class ManifestationUserEmailUpdate
 {

@@ -113,6 +113,7 @@ namespace ManifestationApi.Controllers
         [HttpPost]
         public async Task<ActionResult<ManifestationUser>> PostManifestationUser(CreateManifestationUser newManifestationUser)
         {
+            System.Diagnostics.Debug.WriteLine("hi");
             var newUser = new ManifestationUser
             {
                 Id = Guid.NewGuid(),

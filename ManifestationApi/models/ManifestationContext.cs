@@ -11,7 +11,7 @@ namespace ManifestationApi.Models
 
 
         public DbSet<ManifestationUser> ManifestationUsers { get; set; }
-
+        public DbSet<ManifestationReminder> ManifestationReminders { get; set; }
 
     }
 }
