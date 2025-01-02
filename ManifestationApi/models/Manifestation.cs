@@ -3,15 +3,13 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Text.Json.Serialization;  //sets further requirements/rules for inputs 
 namespace ManifestationApi.Models;
 
-public class ManifestationReminder
+public class Manifestation
 {
 
     public Guid Id { get; set; }
     [Required]
-
-    [RegularExpression(@"^([01]?[0-9]|2[0-3]):([0-5][0-9])$
-")]
-    public string? ReminderTime { get; set; }
+    public string? Affirmation { get; set; }
+    public string? ManifestationImg { get; set; }
 
     [Required]
     public Guid? UserId { get; set; } // Required foreign key property
@@ -21,15 +19,19 @@ public class ManifestationReminder
 
 }
 
-public class CreateManifestationReminder
+public class CreateManifestation
 {
-
-    [RegularExpression(@"^([01]?[0-9]|2[0-3]):([0-5][0-9])$
-")]
-    public string? ReminderTime { get; set; }
+    public string? Affirmation { get; set; }
+    public string? ManifestationImg { get; set; }
 
     [Required]
     public string? UserId { get; set; } // Required foreign key property
 
 }
 
+
+public class ManifestationImgUpdate
+{
+    [Required]
+    public string? ManifestationImg { get; set; }
+}

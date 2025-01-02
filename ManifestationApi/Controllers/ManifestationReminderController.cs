@@ -47,36 +47,7 @@ namespace ManifestationApi.Controllers
 
             return manifestationReminders;
         }
-        // // PUT: api/ManifestationReminder/5
-        // // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        // [HttpPut("{id}")]
-        // public async Task<IActionResult> PutManifestationReminder(Guid id, ManifestationReminder manifestationReminder)
-        // {
-        //     if (id != manifestationReminder.Id)
-        //     {
-        //         return BadRequest();
-        //     }
 
-        //     _context.Entry(manifestationReminder).State = EntityState.Modified;
-
-        //     try
-        //     {
-        //         await _context.SaveChangesAsync();
-        //     }
-        //     catch (DbUpdateConcurrencyException)
-        //     {
-        //         if (!ManifestationReminderExists(id))
-        //         {
-        //             return NotFound();
-        //         }
-        //         else
-        //         {
-        //             throw;
-        //         }
-        //     }
-
-        //     return NoContent();
-        // }
 
         // POST: api/ManifestationReminder
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754

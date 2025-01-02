@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using ManifestationApi.Models;
 
 namespace ManifestationApi.Models
 {
@@ -12,6 +13,7 @@ namespace ManifestationApi.Models
 
         public DbSet<ManifestationUser> ManifestationUsers { get; set; }
         public DbSet<ManifestationReminder> ManifestationReminders { get; set; }
+        public DbSet<Manifestation> Manifestations { get; set; } = default!;
 
     }
 }
