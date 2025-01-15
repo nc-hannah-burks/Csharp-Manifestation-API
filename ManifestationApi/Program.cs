@@ -30,7 +30,9 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-app.UseHttpsRedirection();
+// Disable HTTPS redirection (important for environments like Render)
+// app.UseHttpsRedirection();  // COMMENTED OUT
+
 app.UseAuthorization();
 app.MapControllers();
 

@@ -1,7 +1,7 @@
 # Use the official image as the base
 FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS base
 WORKDIR /app
-EXPOSE 80
+EXPOSE 8080
 
 # Use the SDK to build the app
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
