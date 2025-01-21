@@ -29,7 +29,11 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
-
+if (app.Environment.IsProduction())
+{
+    app.UseSwagger();
+    app.UseSwaggerUI();
+}
 // Disable HTTPS redirection (important for environments like Render)
 // app.UseHttpsRedirection();  // COMMENTED OUT
 
